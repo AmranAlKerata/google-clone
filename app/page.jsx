@@ -1,12 +1,12 @@
 import Image from "next/image";
 import SearchBar from "@/components/SearchBar";
 import Header from "@/components/Header";
-
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
+    <>
       <Header />
-      <div className="flex flex-col items-center justify-center flex-grow px-4">
+      <div className="flex flex-col min-h-[86dvh] bg-white dark:bg-primary">
+        <div className="flex flex-col items-center justify-center flex-grow px-4">
         <div className="flex flex-col items-center space-y-8">
           <div className="relative h-[92px] w-[272px]">
             <Image
@@ -25,8 +25,9 @@ export default function Home() {
             />
           </div>
           <SearchBar />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

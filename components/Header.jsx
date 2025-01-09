@@ -2,13 +2,18 @@
 import Link from "next/link";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "next-themes";
-
+import { useState, useEffect } from "react";
 export default function Header() {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true); // Ensures component is mounted on the client
+  }, []);
 
   return (
-    <header className="flex justify-end items-center p-5 space-x-4 text-sm">
+    <header className="flex justify-end items-center p-5 space-x-4 text-sm dark:bg-primary">
       <Link
         href="https://mail.google.com"
         className="hover:underline text-gray-700 dark:text-gray-200"
@@ -25,7 +30,7 @@ export default function Header() {
         onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
       >
-        {currentTheme === "dark"
+        {mounted && currentTheme === "dark"
           ? <SunIcon className="h-6 w-6 text-gray-200" />
           : <MoonIcon className="h-6 w-6 text-gray-600" />}
       </button>
